@@ -83,38 +83,38 @@
       }
 
       var self = this;
-      window.addEventListener('popstate', function pdfHistoryPopstate(evt) {
-        if (!self.historyUnlocked) {
-          return;
-        }
-        if (evt.state) {
-          // Move back/forward in the history.
-          self._goTo(evt.state);
-          return;
-        }
-
-        // If the state is not set, then the user tried to navigate to a
-        // different hash by manually editing the URL and pressing Enter, or by
-        // clicking on an in-page link (e.g. the "current view" link).
-        // Save the current view state to the browser history.
-
-        // Note: In Firefox, history.null could also be null after an in-page
-        // navigation to the same URL, and without dispatching the popstate
-        // event: https://bugzilla.mozilla.org/show_bug.cgi?id=1183881
-
-        if (self.uid === 0) {
-          // Replace the previous state if it was not explicitly set.
-          var previousParams = (self.previousHash && self.currentBookmark &&
-            self.previousHash !== self.currentBookmark) ?
-            {hash: self.currentBookmark, page: self.currentPage} :
-            {page: 1};
-          replacePreviousHistoryState(previousParams, function() {
-            updateHistoryWithCurrentHash();
-          });
-        } else {
-          updateHistoryWithCurrentHash();
-        }
-      });
+      // window.addEventListener('popstate', function pdfHistoryPopstate(evt) {
+      //   if (!self.historyUnlocked) {
+      //     return;
+      //   }
+      //   if (evt.state) {
+      //     // Move back/forward in the history.
+      //     self._goTo(evt.state);
+      //     return;
+      //   }
+	  //
+      //   // If the state is not set, then the user tried to navigate to a
+      //   // different hash by manually editing the URL and pressing Enter, or by
+      //   // clicking on an in-page link (e.g. the "current view" link).
+      //   // Save the current view state to the browser history.
+	  //
+      //   // Note: In Firefox, history.null could also be null after an in-page
+      //   // navigation to the same URL, and without dispatching the popstate
+      //   // event: https://bugzilla.mozilla.org/show_bug.cgi?id=1183881
+	  //
+      //   if (self.uid === 0) {
+      //     // Replace the previous state if it was not explicitly set.
+      //     var previousParams = (self.previousHash && self.currentBookmark &&
+      //       self.previousHash !== self.currentBookmark) ?
+      //       {hash: self.currentBookmark, page: self.currentPage} :
+      //       {page: 1};
+      //     replacePreviousHistoryState(previousParams, function() {
+      //       updateHistoryWithCurrentHash();
+      //     });
+      //   } else {
+      //     updateHistoryWithCurrentHash();
+      //   }
+      // });
 
 
       function updateHistoryWithCurrentHash() {
