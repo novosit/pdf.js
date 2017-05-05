@@ -214,8 +214,8 @@ var PDFViewer = (function pdfViewer() {
       }
 
       if (!(0 < val && val <= this.pagesCount)) {
-        console.error('PDFViewer_setCurrentPageNumber: "' + val +
-                      '" is out of bounds.');
+        //console.error('PDFViewer_setCurrentPageNumber: "' + val +
+        //              '" is out of bounds.');
         return;
       }
 
