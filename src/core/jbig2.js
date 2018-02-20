@@ -17,8 +17,8 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs/core/jbig2', ['exports', 'pdfjs/shared/util',
-      'pdfjs/core/arithmetic_decoder'], factory);
+    define(['exports', '../shared/util',
+      './arithmetic_decoder'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('../shared/util.js'),
       require('./arithmetic_decoder.js'));

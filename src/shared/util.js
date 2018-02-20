@@ -18,7 +18,7 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs/shared/util', ['exports', 'pdfjs/shared/compatibility'],
+    define(['exports', './compatibility'],
       factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('./compatibility.js'));

@@ -17,7 +17,7 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs-web/ui_utils', ['exports', 'pdfjs-web/pdfjs'], factory);
+    define('./ui_utils', ['exports', './pdfjs'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('./pdfjs.js'));
   } else {
@@ -31,7 +31,7 @@ var DEFAULT_SCALE = 1.0;
 var MIN_SCALE = 0.25;
 var MAX_SCALE = 10.0;
 var UNKNOWN_SCALE = 0;
-var MAX_AUTO_SCALE = 1.25;
+var MAX_AUTO_SCALE = 2.0; //1.25;
 var SCROLLBAR_PADDING = 40;
 var VERTICAL_PADDING = 5;
 
@@ -132,7 +132,7 @@ function scrollIntoView(element, spot, skipOverflowHiddenElements) {
   // producing the error. See also animationStarted.
   var parent = element.offsetParent;
   if (!parent) {
-    console.error('offsetParent is not set -- cannot scroll');
+//    console.error('offsetParent is not set -- cannot scroll');
     return;
   }
   var checkOverflow = skipOverflowHiddenElements || false;

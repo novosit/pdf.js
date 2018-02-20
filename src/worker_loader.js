@@ -26,7 +26,7 @@ self.importScripts = (function (importScripts) {
 
 importScripts('./shared/compatibility.js');
 //importScripts('../node_modules/systemjs/dist/system.js');
-importScripts('../systemjs.config.js');
+//importScripts('../systemjs.config.js');
 
 Promise.all([SystemJS.import('pdfjs/core/network'),
              SystemJS.import('pdfjs/core/worker')]).then(function () {

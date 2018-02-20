@@ -17,7 +17,7 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs-web/toolbar', ['exports', 'pdfjs-web/ui_utils'],
+    define('./toolbar', ['exports', './ui_utils'],
       factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('./ui_utils.js'));

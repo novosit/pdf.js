@@ -17,8 +17,8 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs/core/type1_parser', ['exports', 'pdfjs/shared/util',
-      'pdfjs/core/stream', 'pdfjs/core/encodings'], factory);
+    define(['exports', '../shared/util',
+      './stream', './encodings'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('../shared/util.js'), require('./stream.js'),
       require('./encodings.js'));

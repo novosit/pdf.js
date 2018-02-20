@@ -17,10 +17,10 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs/main_loader', ['exports', 'pdfjs/display/api',
-      'pdfjs/display/annotation_layer', 'pdfjs/display/text_layer',
-      'pdfjs/display/dom_utils', 'pdfjs/shared/util', 'pdfjs/display/svg',
-      'pdfjs/display/global'],
+    define('./main_loader', ['exports', './display/api',
+      './display/annotation_layer', './display/text_layer',
+      './display/dom_utils', './shared/util', './display/svg',
+      './display/global'],
       factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('./display/api.js'),

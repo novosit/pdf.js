@@ -171,8 +171,8 @@ function getViewerConfiguration() {
 function webViewerLoad() {
   var config = getViewerConfiguration();
   if (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION')) {
-    Promise.all([SystemJS.import('pdfjs-web/app'),
-                 SystemJS.import('pdfjs-web/pdf_print_service')])
+    Promise.all([SystemJS.import('./app'),
+                 SystemJS.import('./pdf_print_service')])
            .then(function (modules) {
       var app = modules[0];
       window.PDFViewerApplication = app.PDFViewerApplication;

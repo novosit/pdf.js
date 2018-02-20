@@ -18,9 +18,9 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs/display/api', ['exports', 'pdfjs/shared/util',
-      'pdfjs/display/font_loader', 'pdfjs/display/canvas',
-      'pdfjs/display/metadata', 'pdfjs/display/dom_utils',
+    define(['exports', '../shared/util',
+      './font_loader', './canvas',
+      './metadata', './dom_utils',
       'require'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('../shared/util.js'), require('./font_loader.js'),
@@ -103,7 +103,7 @@ if (typeof PDFJSDev !== 'undefined' &&
     typeof requirejs !== 'undefined' && requirejs.load;
   fakeWorkerFilesLoader = useRequireEnsure ? (function (callback) {
     require.ensure([], function () {
-      var worker = require('./pdf.worker.js');
+      var worker = require('../pdf.worker.js');
       callback(worker.WorkerMessageHandler);
     });
   }) : dynamicLoaderSupported ? (function (callback) {

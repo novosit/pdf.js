@@ -17,8 +17,8 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs/core/cff_parser', ['exports', 'pdfjs/shared/util',
-      'pdfjs/core/charsets', 'pdfjs/core/encodings'], factory);
+    define(['exports', '../shared/util',
+      './charsets', './encodings'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('../shared/util.js'), require('./charsets.js'),
       require('./encodings.js'));

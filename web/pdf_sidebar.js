@@ -17,8 +17,8 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs-web/pdf_sidebar', ['exports',
-      'pdfjs-web/pdf_rendering_queue', 'pdfjs-web/ui_utils'], factory);
+    define('./pdf_sidebar', ['exports',
+      './pdf_rendering_queue', './ui_utils'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('./pdf_rendering_queue.js'),
       require('./ui_utils.js'));

@@ -17,8 +17,8 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs/core/ps_parser', ['exports', 'pdfjs/shared/util',
-      'pdfjs/core/primitives'], factory);
+    define(['exports', '../shared/util',
+      './primitives'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('../shared/util.js'), require('./primitives.js'));
   } else {

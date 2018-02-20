@@ -17,8 +17,8 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('pdfjs-web/firefox_print_service', ['exports', 'pdfjs-web/ui_utils',
-      'pdfjs-web/app', 'pdfjs-web/pdfjs'], factory);
+    define('./firefox_print_service', ['exports', './ui_utils',
+      './app', './pdfjs'], factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('./ui_utils.js'), require('./app.js'),
       require('./pdfjs.js'));
