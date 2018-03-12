@@ -79,6 +79,7 @@ var WorkerTask = (function WorkerTaskClosure() {
   return WorkerTask;
 })();
 
+var IPDFStream, IPDFStreamReader, IPDFStreamRangeReader;
 if (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION')) {
 /**
  * Interface that represents PDF data transport. If possible, it allows
@@ -86,7 +87,7 @@ if (typeof PDFJSDev === 'undefined' || !PDFJSDev.test('PRODUCTION')) {
  *
  * @interface
  */
-function IPDFStream() {} // eslint-disable-line no-inner-declarations
+IPDFStream = function () {} // eslint-disable-line no-inner-declarations
 IPDFStream.prototype = {
   /**
    * Gets a reader for the entire PDF data.
@@ -118,7 +119,7 @@ IPDFStream.prototype = {
  *
  * @interface
  */
-function IPDFStreamReader() {} // eslint-disable-line no-inner-declarations
+IPDFStreamReader = function () {} // eslint-disable-line no-inner-declarations
 IPDFStreamReader.prototype = {
   /**
    * Gets a promise that is resolved when the headers and other metadata of
@@ -187,7 +188,7 @@ IPDFStreamReader.prototype = {
  *
  * @interface
  */
-function IPDFStreamRangeReader() {} // eslint-disable-line no-inner-declarations
+IPDFStreamRangeReader = function () {} // eslint-disable-line no-inner-declarations
 IPDFStreamRangeReader.prototype = {
   /**
    * Gets ability of the stream to progressively load binary data.
