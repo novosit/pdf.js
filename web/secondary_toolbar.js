@@ -17,14 +17,14 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('./secondary_toolbar', ['exports', './ui_utils'],
+    define('./secondary_toolbar', ['exports', './ui_utils', 'ninejs/core/on'],
       factory);
   } else if (typeof exports !== 'undefined') {
-    factory(exports, require('./ui_utils.js'));
+    factory(exports, require('./ui_utils.js'), require('ninejs/core/on'));
   } else {
     factory((root.pdfjsWebSecondaryToolbar = {}), root.pdfjsWebUIUtils);
   }
-}(this, function (exports, uiUtils) {
+}(this, function (exports, uiUtils, on) {
 
 var SCROLLBAR_PADDING = uiUtils.SCROLLBAR_PADDING;
 var mozL10n = uiUtils.mozL10n;
@@ -154,18 +154,20 @@ var SecondaryToolbar = (function SecondaryToolbarClosure() {
 
       // All items within the secondary toolbar.
       for (var button in this.buttons) {
-        var element = this.buttons[button].element;
-        var eventName = this.buttons[button].eventName;
-        var close = this.buttons[button].close;
+        if (this.buttons.hasOwnProperty(button)) {
+          var element = this.buttons[button].element;
+          var eventName = this.buttons[button].eventName;
+          var close = this.buttons[button].close;
 
-        element.addEventListener('click', function (eventName, close) {
-          if (eventName !== null) {
-            this.eventBus.dispatch(eventName, { source: this, });
-          }
-          if (close) {
-            this.close();
-          }
-        }.bind(this, eventName, close));
+          on(element, 'click', function (eventName, close) {
+            if (eventName !== null) {
+              this.eventBus.dispatch(eventName, { source: this, });
+            }
+            if (close) {
+              this.close();
+            }
+          }.bind(this, eventName, close));
+        }
       }
     },
 

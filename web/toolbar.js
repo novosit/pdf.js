@@ -17,14 +17,14 @@
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
-    define('./toolbar', ['exports', './ui_utils'],
+    define('./toolbar', ['exports', './ui_utils', 'ninejs/core/on'],
       factory);
   } else if (typeof exports !== 'undefined') {
-    factory(exports, require('./ui_utils.js'));
+    factory(exports, require('./ui_utils.js'), require('ninejs/core/on'));
   } else {
     factory((root.pdfjsWebToolbar = {}), root.pdfjsWebUIUtils);
   }
-}(this, function (exports, uiUtils) {
+}(this, function (exports, uiUtils, on) {
 
 var mozL10n = uiUtils.mozL10n;
 var noContextMenuHandler = uiUtils.noContextMenuHandler;
@@ -148,7 +148,7 @@ var Toolbar = (function ToolbarClosure() {
         });
       });
 
-      items.scaleSelect.addEventListener('change', function() {
+      on(items.scaleSelect, 'change', function() {
         if (this.value === 'custom') {
           return;
         }
