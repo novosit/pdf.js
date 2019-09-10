@@ -568,7 +568,6 @@ var WorkerMessageHandler = {
         if (source.chunkedViewerLoading) {
           pdfStream = new PDFWorkerStream(source, handler);
         } else {
-          assert(PDFNetworkStream, 'pdfjs/core/network module is not loaded');
           pdfStream = new PDFNetworkStream(data);
         }
       } catch (ex) {
