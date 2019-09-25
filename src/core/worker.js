@@ -1,4 +1,5 @@
 /* Copyright 2012 Mozilla Foundation
+/* Copyright 2012 Mozilla Foundation
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
  * you may not use this file except in compliance with the License.
@@ -13,21 +14,29 @@
  * limitations under the License.
  */
 
+// We needed to create a reference to network js from here since in production
+// dojo is duplicating requests
+// for network.js and it is causing issues with that file so the reference
+// is added by a network copy file called network_copy
+
 'use strict';
 
 (function (root, factory) {
   if (typeof define === 'function' && define.amd) {
     define('pdfjs/core/worker', ['exports', 'pdfjs/shared/util',
-      'pdfjs/core/primitives', 'pdfjs/core/pdf_manager'],
+      'pdfjs/core/primitives', 'pdfjs/core/pdf_manager',
+      'pdfjs/core/network_copy'],
       factory);
   } else if (typeof exports !== 'undefined') {
     factory(exports, require('../shared/util.js'), require('./primitives.js'),
-      require('./pdf_manager.js'));
+      require('./pdf_manager.js'), require('./network_copy.js'));
   } else {
     factory((root.pdfjsCoreWorker = {}), root.pdfjsSharedUtil,
-      root.pdfjsCorePrimitives, root.pdfjsCorePdfManager);
+      root.pdfjsCorePrimitives, root.pdfjsCorePdfManager,
+      root.pdfjsCoreNetworkCopy);
   }
-}(this, function (exports, sharedUtil, corePrimitives, corePdfManager) {
+}(this, function (exports, sharedUtil, corePrimitives, corePdfManager,
+  coreNetworkCopy) {
 
 var UNSUPPORTED_FEATURES = sharedUtil.UNSUPPORTED_FEATURES;
 var InvalidPDFException = sharedUtil.InvalidPDFException;
@@ -564,6 +573,9 @@ var WorkerMessageHandler = {
       }
 
       var pdfStream;
+      if (!PDFNetworkStream) {
+ setPDFNetworkStreamClass(coreNetworkCopy.PDFNetworkStream);
+}
       try {
         if (source.chunkedViewerLoading) {
           pdfStream = new PDFWorkerStream(source, handler);
